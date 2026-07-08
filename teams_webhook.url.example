@@ -1,5 +1,0 @@
-# Copie este arquivo para "teams_webhook.url" (mesma pasta) e cole a URL do webhook
-# do Teams na primeira linha não-comentada abaixo. O arquivo "teams_webhook.url"
-# fica fora do git (.gitignore). Alternativa: definir a variável de ambiente
-# TEAMS_WEBHOOK_URL (tem prioridade sobre o arquivo).
-https://prod-00.brazilsouth.logic.azure.com:443/workflows/SEU_WEBHOOK_AQUI/triggers/manual/paths/invoke?...
