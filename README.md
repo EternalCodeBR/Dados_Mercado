@@ -5,12 +5,13 @@ brasileiro a partir de fontes oficiais, mantendo um histórico consolidado e con
 para uso por outras rotinas/calculadoras.
 
 ## Problema
-A atualização dos indicadores de mercado (CDI, PTAX, moedas, IPCA) usados pelas
-calculadoras de ativos era feita manualmente em uma planilha (`BaseDadosMercado.xlsm`):
-alguém precisava consultar cada fonte, copiar o valor do dia e colar na aba certa.
-Isso gerava atraso na atualização, risco de erro de digitação/cópia e nenhuma
-notificação automática de que a base tinha (ou não) sido atualizada — falhas silenciosas
-só eram percebidas quando alguém ia usar o dado.
+A atualização dos **8 indicadores de mercado** (CDI e seu fator diário, PTAX/USD,
+EUR, CHF, CAD, JPY e IPCA) usados pelas calculadoras de ativos era feita manualmente
+em uma planilha (`BaseDadosMercado.xlsm`): alguém precisava consultar cada fonte,
+copiar o valor do dia e colar na aba certa — **5 a 10 minutos de digitação por dia
+útil**, com risco de erro a cada valor copiado. Não havia notificação automática de
+que a base tinha (ou não) sido atualizada — falhas silenciosas só eram percebidas
+quando alguém ia usar o dado.
 
 ## Solução
 Rotina em Python (`python -m codigo.orquestrador`) que:
@@ -33,12 +34,13 @@ Rotina em Python (`python -m codigo.orquestrador`) que:
 - **Notifica a equipe no Microsoft Teams** ao final (sucesso em verde, falha em vermelho),
   incluindo o CSV do dia como anexo — eliminando a checagem manual de "a base foi
   atualizada hoje?".
-- **Tem testes automatizados** (`pytest`) cobrindo aquisição, cálculo de dias úteis,
+- **Tem 49 testes automatizados** (`pytest`) cobrindo aquisição, cálculo de dias úteis,
   montagem da planilha e notificação.
 
 ## Resultado
-- Zero digitação manual: a base é atualizada sozinha, todo dia útil, via agendamento
-  (Windows Task Scheduler).
+- **Zero digitação manual**: os 8 indicadores, que exigiam 5–10 minutos de consulta
+  e cópia por dia, passaram a ser coletados sozinhos, todo dia útil, via agendamento
+  (Windows Task Scheduler) — direto de 2 fontes oficiais (BACEN e IPEADATA).
 - Histórico auditável e reconstruível do zero a qualquer momento
   (`python -m codigo.orquestrador seed`).
 - Falhas deixaram de ser silenciosas: a equipe é avisada no Teams no mesmo dia,
