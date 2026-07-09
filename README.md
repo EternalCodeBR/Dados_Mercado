@@ -81,7 +81,6 @@ codigo/
   append.py         # upsert idempotente e delta
 tests/              # testes (pytest)
 output/             # gerado pela rotina (ignorado no git)
-docs/apresentacao/  # one-pager de apresentação do projeto
 ```
 
 ## Testes
